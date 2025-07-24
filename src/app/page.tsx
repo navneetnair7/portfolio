@@ -16,6 +16,7 @@ export default function HomePage() {
             { name: "Projects", link: "/projects" },
             { name: "Contact", link: "/contact" },
           ]}
+          className={"fixed top-0 left-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-gray-200 dark:border-gray-800"}
         />
         <div className="flex min-h-screen items-center justify-center" id="about">
           <div className="h-96 w-full max-w-4xl">
