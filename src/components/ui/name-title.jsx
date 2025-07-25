@@ -2,10 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "motion/react";
 
-export const NameTitle = ({
-  text,
-  duration
-}) => {
+export const NameTitle = ({ text, duration }) => {
   const svgRef = useRef(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
@@ -33,14 +30,16 @@ export const NameTitle = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none">
+      className="select-none"
+    >
       <defs>
         <linearGradient
           id="textGradient"
           gradientUnits="userSpaceOnUse"
           cx="50%"
           cy="50%"
-          r="25%">
+          r="25%"
+        >
           {hovered && (
             <>
               <stop offset="0%" stopColor="#eab308" />
@@ -64,12 +63,19 @@ export const NameTitle = ({
           //     stiffness: 300,
           //     damping: 50,
           //   }}
-          transition={{ duration: duration ?? 0, ease: "easeOut" }}>
+          transition={{ duration: duration ?? 0, ease: "easeOut" }}
+        >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
         </motion.radialGradient>
         <mask id="textMask">
-          <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          <rect
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            fill="url(#revealMask)"
+          />
         </mask>
       </defs>
       <text
@@ -78,8 +84,9 @@ export const NameTitle = ({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-5xl font-bold dark:stroke-neutral-800"
-        style={{ opacity: hovered ? 0.7 : 0 }}>
+        className="fill-transparent stroke-neutral-800 font-[helvetica] text-5xl font-bold"
+        style={{ opacity: hovered ? 1 : 0 }}
+      >
         {text}
       </text>
       <motion.text
@@ -88,7 +95,7 @@ export const NameTitle = ({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-5xl font-bold dark:stroke-neutral-800"
+        className="fill-transparent stroke-neutral-800 font-[helvetica] text-5xl font-bold"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -97,7 +104,8 @@ export const NameTitle = ({
         transition={{
           duration: 4,
           ease: "easeInOut",
-        }}>
+        }}
+      >
         {text}
       </motion.text>
       <text
@@ -108,7 +116,8 @@ export const NameTitle = ({
         stroke="url(#textGradient)"
         strokeWidth="0.3"
         mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-5xl font-bold">
+        className="fill-transparent font-[helvetica] text-5xl font-bold"
+      >
         {text}
       </text>
     </svg>

@@ -1,6 +1,7 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
+import { ThreeDCardDemo } from "./experience-card";
 
 export const Timeline = ({ data }) => {
   const ref = useRef(null);
@@ -24,40 +25,31 @@ export const Timeline = ({ data }) => {
 
   return (
     <div className="w-full font-sans md:px-10" ref={containerRef}>
-      <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 text-center">
-        <h2 className="mb-4 max-w-4xl text-lg text-white md:text-4xl mx-auto text-center">
+      <div className="mx-auto max-w-7xl px-4 py-20 text-center md:px-8">
+        <h2 className="mx-auto mb-4 max-w-4xl text-center text-lg text-white md:text-4xl">
           Changelog of my journey
         </h2>
-        <p className="max-w-sm text-sm text-neutral-300 md:text-base mx-auto text-center">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
-          a timeline of my journey.
+        <p className="mx-auto max-w-sm text-center text-sm text-neutral-300 md:text-base">
         </p>
       </div>
-      <div ref={ref} className="relative mx-auto max-w-7xl pb-20">
+      <div ref={ref} className="relative mx-auto max-w-7xl">
         {data.map((item, index) => {
           const isLeft = index % 2 === 0;
           return (
             <div
               key={index}
-              className="relative flex justify-center pt-10 md:pt-40"
+              className={`relative flex justify-center ${index === 0 ? 'pt-10' : 'pt-10'} ${index === data.length - 1 ? 'pb-20' : ''} md:pt-10`}
             >
               {/* Timeline item container */}
               <div
-                className={`flex w-full items-center justify-center ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+                className={`flex w-full items-center ${isLeft ? "flex-row" : "flex-row-reverse"}`}
               >
                 {/* Content side */}
-                <div
-                  className={`w-5/12 ${isLeft ? "pr-8 text-right" : "pl-8 text-left"}`}
-                >
-                  <div className="rounded-lg border border-neutral-700 p-6 shadow-lg">
-                    <h3 className="mb-3 text-xl font-bold text-neutral-200 md:text-2xl">
-                      {item.title}
-                    </h3>
-                    <div className="text-neutral-600">{item.content}</div>
-                  </div>
+                <div className="w-5/12">
+                  <ThreeDCardDemo />
                 </div>
 
-                {/* Center dot */}
+                {/* Center dot - aligned with the line */}
                 <div className="flex w-2/12 items-center justify-center">
                   <div className="z-20 h-4 w-4 rounded-full border-4 border-white bg-gradient-to-r from-purple-500 to-blue-500 shadow-lg"></div>
                 </div>
@@ -69,11 +61,11 @@ export const Timeline = ({ data }) => {
           );
         })}
 
-        {/* Center vertical line - Spans full timeline height */}
+        {/* Center vertical line - Spans from first to last dot */}
         <div
-          className="absolute left-1/2 top-0 z-0 w-[4px] -translate-x-1/2 transform overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-600 to-transparent to-[99%]"
+          className="absolute top-10 left-1/2 z-0 w-[4px] -translate-x-1/2 transform overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-600 to-transparent to-[99%]"
           style={{
-            height: height + "px",
+            height: `calc(${height}px - 430px)`,
           }}
         >
           <motion.div

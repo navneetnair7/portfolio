@@ -90,7 +90,7 @@ export const LoadingScreen = ({ children, duration = 7000 }) => {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="mb-4"
                 >
-                  <h1 className="text-7xl md:text-9xl font-light text-white mb-2 tracking-wide">
+                  <h1 className="text-7xl md:text-9xl text-white mb-2 tracking-wide">
                     {greetings[currentLanguageIndex]?.text || "Hello"}
                   </h1>
                 </motion.div>
